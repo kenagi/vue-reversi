@@ -2,8 +2,8 @@
   <div>
     <table id='board' >
     <tr v-for='(array, i) in board' :key='i'>
-        <td v-for='(item, j) in array' :key='j'>
-            <span :class='getColorClass(item)' :key='item'></span>
+        <td v-for='(item, j) in array' :key='j' v-on:click='onClickCell(j,i)'>
+            <span :class='getColorClass(j, i)' :key='item'></span>
         </td>
     </tr>
     </table>
@@ -34,16 +34,24 @@ export default {
     console.log(this.board);
   },
   methods: {
-    getColorClass(integer) {
-      if (integer === -1) {
+    getColorClass(x, y) {
+      if (this.getNumber(x, y) === -1) {
         return 'disc white';
-      } else if (integer === 1) {
+      } else if (this.getNumber(x, y) === 1) {
         return 'disc black';
       }
       return '';
     },
+    getNumber(x, y) {
+      return this.board[y][x];
+    },
     setNumber(x, y, num) {
       this.board[y].splice(x, 1, num);
+    },
+    onClickCell(x, y) {
+      console.log('x', x);
+      console.log('y', y);
+      this.setNumber(x, y, 1);
     },
   },
 };
@@ -51,29 +59,34 @@ export default {
 
 
 <style scoped>
-#board{
-text-align: center;
-margin-left: auto;
- margin-right: auto;
+#board {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
-#board > tr > td{
-    width: 80px;
-    height: 80px;
-    border: solid;
-    background-color:lawngreen
+#board > tr {
+  height: 95px;
 }
-#board > tr > td >span.disc.black{
-    display: inline-block;
-    width: 80px;
-    height: 80px;
-    background-color: black;
-    border-radius: 75px;
+#board > tr > td {
+  width: 80px;
+  height: 80px;
+  border: solid;
+  background-color: lawngreen;
 }
-#board > tr > td >span.disc.white{
-    display: inline-block;
-    width: 80px;
-    height: 80px;
-    background-color: white;
-    border-radius: 75px;
+#board > tr > td > span.disc.black {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  background-color: black;
+  border-radius: 75px;
+  margin-top: 1px;
+}
+#board > tr > td > span.disc.white {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  background-color: white;
+  border-radius: 75px;
+  margin-top: 1px;
 }
 </style>
