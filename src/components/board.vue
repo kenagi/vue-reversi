@@ -7,7 +7,7 @@
         </td>
     </tr>
     </table>
-    <h3>プレイヤー {{this.currentTrunColor === 1 ? '黒': '白'}}のターンです</h3>
+    <h3>プレイヤー {{this.currentTurnColor === 1 ? '黒': '白'}}のターンです</h3>
   </div>
 </template>
 <script>
@@ -26,7 +26,7 @@ export default {
         [0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0],
       ],
-      currentTrunColor: 1,
+      currentTurnColor: 1,
     };
   },
   mounted() {
@@ -55,8 +55,8 @@ export default {
     onClickCell(x, y) {
       console.log('x', x);
       console.log('y', y);
-      this.setNumber(x, y, this.currentTrunColor);
-      this.currentTrunColor *= -1;
+      this.setNumber(x, y, this.currentTurnColor);
+      this.currentTurnColor *= -1;
     },
   },
 };
