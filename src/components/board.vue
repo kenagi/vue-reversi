@@ -23,6 +23,7 @@ export default {
         [0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0],
       ],
+      currentTrunColor: 1,
     };
   },
   mounted() {
@@ -51,7 +52,8 @@ export default {
     onClickCell(x, y) {
       console.log('x', x);
       console.log('y', y);
-      this.setNumber(x, y, 1);
+      this.setNumber(x, y, this.currentTrunColor);
+      this.currentTrunColor *= -1;
     },
   },
 };
