@@ -7,9 +7,12 @@
         </td>
     </tr>
     </table>
+    <h3>プレイヤー {{this.currentTrunColor === 1 ? '黒': '白'}}のターンです</h3>
   </div>
 </template>
 <script>
+const BLACK = 1;
+const WHITE = -1;
 export default {
   data() {
     return {
@@ -28,17 +31,17 @@ export default {
   },
   mounted() {
     console.log(this.board[0][0]);
-    this.setNumber(3, 3, 1);
-    this.setNumber(4, 4, 1);
-    this.setNumber(3, 4, -1);
-    this.setNumber(4, 3, -1);
+    this.setNumber(3, 3, BLACK);
+    this.setNumber(4, 4, BLACK);
+    this.setNumber(3, 4, WHITE);
+    this.setNumber(4, 3, WHITE);
     console.log(this.board);
   },
   methods: {
     getColorClass(x, y) {
-      if (this.getNumber(x, y) === -1) {
+      if (this.getNumber(x, y) === WHITE) {
         return 'disc white';
-      } else if (this.getNumber(x, y) === 1) {
+      } else if (this.getNumber(x, y) === BLACK) {
         return 'disc black';
       }
       return '';
